@@ -1,0 +1,29 @@
+---
+import PageLayout from './PageLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  bodyClass: string;
+  modifiedTime?: string;
+  publishedTime?: string;
+  postCss?: string;
+  fixCss?: string;
+  extraStylesheets?: string[];
+  pageScript?: string;
+}
+
+const {
+  fixCss = '/css/contact-page-fixes.css',
+  extraStylesheets = [],
+  pageScript = '',
+  ...props
+} = Astro.props;
+---
+
+<PageLayout {...props} extraStylesheets={[fixCss, ...extraStylesheets]}>
+  <slot />
+  {pageScript && <script src={pageScript} defer></script>}
+</PageLayout>

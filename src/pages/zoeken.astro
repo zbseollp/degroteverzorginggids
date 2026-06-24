@@ -1,0 +1,110 @@
+---
+import ContentPageLayout from '../layouts/ContentPageLayout.astro';
+import headerHtml from '../data/homepage/header.html?raw';
+import footerHtml from '../data/homepage/footer.html?raw';
+import { getCollection } from 'astro:content';
+import { buildSearchIndex } from '../lib/search-index';
+
+const blogEntries = await getCollection('blog');
+const index = buildSearchIndex(
+  blogEntries.map((entry) => ({
+    id: entry.id,
+    title: entry.data.title,
+    description: entry.data.description,
+  }))
+);
+const indexJson = JSON.stringify(index);
+---
+
+<ContentPageLayout
+  title="Zoeken - degroteverzorginggids.nl"
+  description="Zoek op degroteverzorginggids.nl naar verzorgingsproducten, reviews en artikelen."
+  canonical="/zoeken/"
+  bodyClass="wp-singular page-template page-template-elementor_header_footer page wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-7"
+  fixCss="/css/search-form-fixes.css"
+  pageScript="/js/search-results.js"
+>
+  <Fragment set:html={headerHtml} />
+
+  <main id="content" class="dgg-search-results">
+    <div class="dgg-search-results__inner">
+      <h1 id="dgg-search-heading" class="dgg-search-results__title">Zoeken</h1>
+      <div id="dgg-search-results"></div>
+    </div>
+  </main>
+
+  <script type="application/json" id="dgg-search-index" set:html={indexJson} />
+
+  <Fragment set:html={footerHtml} />
+</ContentPageLayout>
+
+<style>
+  .dgg-search-results {
+    padding: 48px 20px 80px;
+    background: #fff;
+  }
+
+  .dgg-search-results__inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .dgg-search-results__title {
+    margin: 0 0 16px;
+    font-family: 'Cerebri Sans Pro', sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    color: #414284;
+  }
+
+  .dgg-search-results :global(.dgg-search-results__intro),
+  .dgg-search-results :global(.dgg-search-results__empty) {
+    margin: 0;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .dgg-search-results :global(.dgg-search-results__list) {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
+
+  .dgg-search-results :global(.dgg-search-results__item) {
+    margin: 0;
+  }
+
+  .dgg-search-results :global(.dgg-search-results__link) {
+    display: block;
+    padding: 18px 20px;
+    border: 1px solid rgba(65, 66, 132, 0.12);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(65, 66, 132, 0.06);
+    text-decoration: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .dgg-search-results :global(.dgg-search-results__link:hover) {
+    box-shadow: 0 6px 24px rgba(65, 66, 132, 0.12);
+    transform: translateY(-1px);
+  }
+
+  .dgg-search-results :global(.dgg-search-results__item-title) {
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'Cerebri Sans Pro', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #414284;
+  }
+
+  .dgg-search-results :global(.dgg-search-results__item-desc) {
+    display: block;
+    color: #666;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+</style>

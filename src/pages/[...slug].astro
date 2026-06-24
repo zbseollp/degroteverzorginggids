@@ -1,0 +1,82 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogPostLayout from '../layouts/BlogPostLayout.astro';
+import ProductPageLayout from '../layouts/ProductPageLayout.astro';
+import productManifest from '../data/product-pages/manifest.json';
+import { PRODUCT_ALIASES } from '../lib/product-aliases';
+
+const productHeaders = import.meta.glob('../data/product-pages/*/header.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+const productMains = import.meta.glob('../data/product-pages/*/main.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+const productFooters = import.meta.glob('../data/product-pages/*/footer.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
+function toMap(modules: Record<string, string>, part: string) {
+  const map: Record<string, string> = {};
+  for (const [filePath, html] of Object.entries(modules)) {
+    const slug = filePath.match(new RegExp(`product-pages/([^/]+)/${part}\\.html`))?.[1];
+    if (slug) map[slug] = html;
+  }
+  return map;
+}
+
+const productHeaderMap = toMap(productHeaders, 'header');
+const productMainMap = toMap(productMains, 'main');
+const productFooterMap = toMap(productFooters, 'footer');
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  const productSlugs = Object.keys(productManifest);
+
+  const blogPaths = blogEntries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { type: 'blog' as const, entry },
+  }));
+
+  const productPaths = [
+    ...productSlugs.map((slug) => ({
+      params: { slug },
+      props: { type: 'product' as const, slug },
+    })),
+    ...Object.entries(PRODUCT_ALIASES).map(([alias, target]) => ({
+      params: { slug: alias },
+      props: { type: 'product' as const, slug: target },
+    })),
+  ];
+
+  return [...productPaths, ...blogPaths];
+}
+
+const props = Astro.props;
+
+let Content: Awaited<ReturnType<typeof render>>['Content'] | null = null;
+if (props.type === 'blog') {
+  ({ Content } = await render(props.entry));
+}
+---
+
+{
+  props.type === 'product' ? (
+    <ProductPageLayout {...productManifest[props.slug as keyof typeof productManifest]}>
+      <Fragment set:html={productHeaderMap[props.slug]} />
+      <Fragment set:html={productMainMap[props.slug]} />
+      <Fragment set:html={productFooterMap[props.slug]} />
+    </ProductPageLayout>
+  ) : (
+    Content && (
+      <BlogPostLayout entry={props.entry}>
+        <Content />
+      </BlogPostLayout>
+    )
+  )
+}

@@ -1,0 +1,52 @@
+---
+import { getBlogPageUrl } from '../lib/blog-posts';
+
+interface Props {
+  currentPage: number;
+  totalPages: number;
+}
+
+const { currentPage, totalPages } = Astro.props;
+
+if (totalPages <= 1) {
+  return null;
+}
+
+const prevUrl = currentPage > 1 ? getBlogPageUrl(currentPage - 1) : null;
+const nextUrl = currentPage < totalPages ? getBlogPageUrl(currentPage + 1) : null;
+const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+---
+
+<nav class="elementor-pagination" aria-label="Paginering">
+  {
+    prevUrl ? (
+      <a class="page-numbers prev" href={prevUrl}>
+        Vorige
+      </a>
+    ) : (
+      <span class="page-numbers prev">Vorige</span>
+    )
+  }
+  {
+    pages.map((page) =>
+      page === currentPage ? (
+        <span aria-current="page" class="page-numbers current">
+          {page}
+        </span>
+      ) : (
+        <a class="page-numbers" href={getBlogPageUrl(page)}>
+          {page}
+        </a>
+      ),
+    )
+  }
+  {
+    nextUrl ? (
+      <a class="page-numbers next" href={nextUrl}>
+        Volgende
+      </a>
+    ) : (
+      <span class="page-numbers next">Volgende</span>
+    )
+  }
+</nav>

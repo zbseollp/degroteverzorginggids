@@ -1,0 +1,98 @@
+{
+  "header": [
+    {
+      "label": "Home",
+      "href": "/",
+      "children": []
+    },
+    {
+      "label": "Haarproducten",
+      "href": "#",
+      "children": [
+        {
+          "label": "Haar wax mannen",
+          "href": "/beste-haar-wax-mannen",
+          "children": []
+        },
+        {
+          "label": "Keratine shampoo",
+          "href": "/beste-keratine-shampoo",
+          "children": []
+        },
+        {
+          "label": "Anti-roos schampoo",
+          "href": "/beste-anti-roos-shampoo",
+          "children": []
+        },
+        {
+          "label": "Natuurlijke shampoo",
+          "href": "/beste-natuurlijke-shampoo",
+          "children": []
+        },
+        {
+          "label": "Olie beschadigd haar",
+          "href": "/beste-olie-voor-beschadigd-haar",
+          "children": []
+        },
+        {
+          "label": "Haarverf kastanjebruin",
+          "href": "/beste-haarverf-kastanjebruin",
+          "children": []
+        },
+        {
+          "label": "Haarmasker droog haar",
+          "href": "/beste-haarmasker-droog-haar",
+          "children": []
+        },
+        {
+          "label": "Shampoo gekleurd haar",
+          "href": "/beste-shampoo-gekleurd-haar",
+          "children": []
+        },
+        {
+          "label": "Shampoo zonder sulfaten",
+          "href": "/beste-shampoo-zonder-sulfaten",
+          "children": []
+        },
+        {
+          "label": "Krultang voor beach waves",
+          "href": "/beste-krultang-voor-beach-waves",
+          "children": []
+        }
+      ]
+    },
+    {
+      "label": "Blog",
+      "href": "/blog",
+      "children": []
+    },
+    {
+      "label": "Contact",
+      "href": "/contact",
+      "children": []
+    },
+    {
+      "label": "Over ons",
+      "href": "/over-ons",
+      "children": []
+    }
+  ],
+  "footer": [
+    {
+      "label": "Sitemap",
+      "href": "/sitemap"
+    },
+    {
+      "label": "Over ons",
+      "href": "/over-ons"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    }
+  ]
+}

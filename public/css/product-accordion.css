@@ -1,0 +1,33 @@
+/* Smooth FAQ accordion transitions (matches Elementor slide behavior) */
+
+.elementor-accordion .elementor-tab-content {
+  overflow: hidden;
+}
+
+.elementor-accordion .elementor-tab-title {
+  transition: color 0.3s ease;
+}
+
+.elementor-accordion .elementor-accordion-icon i {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon-closed i {
+  transform: rotate(90deg);
+}
+
+.elementor-accordion .elementor-tab-content p {
+  margin-top: 0;
+}
+
+.elementor-accordion .elementor-tab-content p:last-child {
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elementor-accordion .elementor-tab-content,
+  .elementor-accordion .elementor-tab-title,
+  .elementor-accordion .elementor-accordion-icon i {
+    transition: none !important;
+  }
+}

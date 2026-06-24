@@ -1,0 +1,23 @@
+---
+import ContentPageLayout from '../layouts/ContentPageLayout.astro';
+import headerHtml from '../data/over-ons/header.html?raw';
+import mainHtml from '../data/over-ons/main.html?raw';
+import footerHtml from '../data/over-ons/footer.html?raw';
+import meta from '../data/over-ons/meta.json';
+
+const { title, description, canonical, bodyClass, modifiedTime, publishedTime, postCss } = meta;
+---
+
+<ContentPageLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  bodyClass={bodyClass}
+  modifiedTime={modifiedTime}
+  publishedTime={publishedTime}
+  postCss={postCss}
+>
+  <Fragment set:html={headerHtml} />
+  <Fragment set:html={mainHtml} />
+  <Fragment set:html={footerHtml} />
+</ContentPageLayout>

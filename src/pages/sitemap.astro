@@ -1,0 +1,22 @@
+---
+import ContentPageLayout from '../layouts/ContentPageLayout.astro';
+import headerHtml from '../data/sitemap/header.html?raw';
+import mainHtml from '../data/sitemap/main.html?raw';
+import footerHtml from '../data/sitemap/footer.html?raw';
+import meta from '../data/sitemap/meta.json';
+
+const { title, description, canonical, bodyClass, modifiedTime, postCss } = meta;
+---
+
+<ContentPageLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  bodyClass={bodyClass}
+  modifiedTime={modifiedTime}
+  postCss={postCss}
+>
+  <Fragment set:html={headerHtml} />
+  <Fragment set:html={mainHtml} />
+  <Fragment set:html={footerHtml} />
+</ContentPageLayout>

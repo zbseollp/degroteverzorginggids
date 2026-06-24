@@ -1,0 +1,29 @@
+.elementor-148 .elementor-element.elementor-element-28696665{margin-top:0px;margin-bottom:0px;padding:60px 0px 60px 0px;}.elementor-148 .elementor-element.elementor-element-12ffd8d:not(.elementor-motion-effects-element-type-background) > .elementor-widget-wrap, .elementor-148 .elementor-element.elementor-element-12ffd8d > .elementor-widget-wrap > .elementor-motion-effects-container > .elementor-motion-effects-layer{background-color:#FFFFFF;}.elementor-148 .elementor-element.elementor-element-12ffd8d > .elementor-element-populated, .elementor-148 .elementor-element.elementor-element-12ffd8d > .elementor-element-populated > .elementor-background-overlay, .elementor-148 .elementor-element.elementor-element-12ffd8d > .elementor-background-slideshow{border-radius:10px 10px 10px 10px;}.elementor-148 .elementor-element.elementor-element-12ffd8d > .elementor-element-populated{transition:background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;padding:10px 10px 10px 10px;}.elementor-148 .elementor-element.elementor-element-12ffd8d > .elementor-element-populated > .elementor-background-overlay{transition:background 0.3s, border-radius 0.3s, opacity 0.3s;}.elementor-widget-heading .elementor-heading-title{font-family:var( --e-global-typography-primary-font-family ), Sans-serif;font-weight:var( --e-global-typography-primary-font-weight );color:var( --e-global-color-primary );}.elementor-148 .elementor-element.elementor-element-20ec018 .elementor-heading-title{font-family:"Cerebri Sans Pro", Sans-serif;font-weight:700;line-height:1.2em;}.elementor-widget-text-editor{font-family:var( --e-global-typography-text-font-family ), Sans-serif;font-size:var( --e-global-typography-text-font-size );font-weight:var( --e-global-typography-text-font-weight );color:var( --e-global-color-text );}.elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:var( --e-global-color-primary );}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap, .elementor-widget-text-editor.elementor-drop-cap-view-default .elementor-drop-cap{color:var( --e-global-color-primary );border-color:var( --e-global-color-primary );}.elementor-148 .elementor-element.elementor-element-14acd917{font-family:"Cerebri Sans Pro", Sans-serif;font-size:16px;font-weight:400;color:var( --e-global-color-text );}.elementor-widget-image .widget-image-caption{color:var( --e-global-color-text );font-family:var( --e-global-typography-text-font-family ), Sans-serif;font-size:var( --e-global-typography-text-font-size );font-weight:var( --e-global-typography-text-font-weight );}.elementor-148 .elementor-element.elementor-element-4fd495a > .elementor-widget-container{margin:-17px 4px 0px 0px;}.elementor-148 .elementor-element.elementor-element-4fd495a img{border-radius:15px 15px 15px 15px;}.elementor-148 .elementor-element.elementor-element-cb38b89{font-family:"Cerebri Sans Pro", Sans-serif;font-size:16px;font-weight:400;color:var( --e-global-color-text );}@media(max-width:1024px){.elementor-148 .elementor-element.elementor-element-28696665{padding:10px 10px 40px 10px;}.elementor-widget-text-editor{font-size:var( --e-global-typography-text-font-size );}.elementor-widget-image .widget-image-caption{font-size:var( --e-global-typography-text-font-size );}}@media(max-width:767px){.elementor-widget-text-editor{font-size:var( --e-global-typography-text-font-size );}.elementor-148 .elementor-element.elementor-element-14acd917{font-size:14px;}.elementor-widget-image .widget-image-caption{font-size:var( --e-global-typography-text-font-size );}.elementor-148 .elementor-element.elementor-element-cb38b89{font-size:14px;}}@media(max-width:1024px) and (min-width:768px){.elementor-148 .elementor-element.elementor-element-12ffd8d{width:100%;}}/* Start Custom Fonts CSS */@font-face {
+	font-family: 'Cerebri Sans Pro';
+	font-style: normal;
+	font-weight: 400;
+	font-display: auto;
+	src: url('/uploads/2023/01/CerebriSansPro-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Cerebri Sans Pro';
+	font-style: normal;
+	font-weight: 500;
+	font-display: auto;
+	src: url('/uploads/2023/01/CerebriSansPro-Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Cerebri Sans Pro';
+	font-style: normal;
+	font-weight: 600;
+	font-display: auto;
+	src: url('/uploads/2023/01/CerebriSansPro-SemiBold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Cerebri Sans Pro';
+	font-style: normal;
+	font-weight: 700;
+	font-display: auto;
+	src: url('/uploads/2023/01/CerebriSansPro-Bold.ttf') format('truetype');
+}
+/* End Custom Fonts CSS */
