@@ -1,221 +1,192 @@
-/* Blog listing — card grid, full-width thumbnails, sidebar TOC */
+/* Blog listing + shared article cards */
 
-/* ── Table of contents sidebar ── */
-.elementor-708 .elementor-element.elementor-element-6297fb99 .elementor-toc__header {
-  background-color: var(--e-global-color-secondary, #414284);
-  padding: 14px 20px;
-  border-radius: 8px 8px 0 0;
-  overflow: visible;
-  align-items: center;
-  gap: 12px;
-}
-
-.elementor-708 .elementor-element.elementor-element-6297fb99 .elementor-toc__header-title {
-  color: #fff !important;
-  flex: 1;
-  min-width: 0;
-  padding-left: 2px;
-  padding-right: 12px;
-  overflow: visible;
-  white-space: nowrap;
-}
-
-.elementor-708 .elementor-element.elementor-element-6297fb99 .elementor-toc__toggle-button,
-.elementor-708 .elementor-element.elementor-element-6297fb99 .elementor-toc__toggle-button i {
-  color: #fff;
-}
-
-.elementor-708 .elementor-element.elementor-element-6297fb99 .elementor-toc__body {
-  padding: 12px 20px 16px;
-  border: 1px solid rgba(65, 66, 132, 0.12);
-  border-top: none;
-  border-radius: 0 0 8px 8px;
-}
-
-.elementor-708 .elementor-element.elementor-element-6297fb99 .elementor-toc__list-item-text {
-  color: var(--e-global-color-primary, #414284);
-  text-decoration: none;
-}
-
-.elementor-708 .elementor-element.elementor-element-6297fb99 .elementor-toc__list-item-text:hover {
-  color: #f63e04;
-}
-
-/* ── Pagination ── */
-.elementor-element-bbf515f .elementor-pagination {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.elementor-pagination .page-numbers {
-  cursor: pointer;
-  display: inline-block;
-  min-width: 2.25rem;
-  padding: 0.35rem 0.65rem;
-  margin: 0 0.2rem;
-  border-radius: 4px;
-  color: var(--e-global-color-primary, #414284);
-  text-decoration: none;
-  line-height: 1.4;
-}
-
-.elementor-pagination a.page-numbers:hover {
-  color: #f63e04;
-}
-
-.elementor-pagination .page-numbers.current {
-  background: var(--e-global-color-primary, #414284);
-  color: #fff;
-  font-weight: 600;
-}
-
-.elementor-pagination span.page-numbers.prev,
-.elementor-pagination span.page-numbers.next {
-  opacity: 0.45;
-  cursor: default;
-}
-
-.elementor-pagination a.page-numbers.prev,
-.elementor-pagination a.page-numbers.next {
-  font-weight: 600;
-}
-
-/* ── Grid spacing ── */
-.elementor-621 .elementor-element.elementor-element-bbf515f .elementor-posts-container.elementor-grid,
-.elementor-708 .elementor-element.elementor-element-bbf515f .elementor-posts-container.elementor-grid,
-.elementor-708 .elementor-element.elementor-element-4dd6a19f .elementor-posts-container.elementor-grid {
-  column-gap: var(--grid-column-gap, 30px);
-  row-gap: var(--grid-row-gap, 35px);
-}
-
-/* ── Card layout (main grid + sidebar) ── */
-.elementor-708 .elementor-element.elementor-element-bbf515f .elementor-post,
-.elementor-708 .elementor-element.elementor-element-4dd6a19f .elementor-post,
-.elementor-621 .elementor-element.elementor-element-bbf515f .elementor-post {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border: 1px solid rgba(65, 66, 132, 0.12);
-  border-radius: 10px;
-  box-shadow: 0 2px 14px rgba(65, 66, 132, 0.08);
-  overflow: hidden;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.elementor-708 .elementor-element.elementor-element-bbf515f .elementor-post:hover,
-.elementor-708 .elementor-element.elementor-element-4dd6a19f .elementor-post:hover,
-.elementor-621 .elementor-element.elementor-element-bbf515f .elementor-post:hover {
-  box-shadow: 0 6px 24px rgba(65, 66, 132, 0.14);
-  transform: translateY(-2px);
-}
-
-/* Full-width thumbnail area */
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__thumbnail__link {
-  display: block;
-  width: 100%;
-  margin: 0;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__thumbnail {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 66%;
-  overflow: hidden;
-  background: #f4f5fa;
-}
-
-/* Override Elementor ratio centering — images must fill the frame */
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__thumbnail img,
-.elementor-posts-container.elementor-has-item-ratio
-  .elementor-post.dgg-blog-card
-  .elementor-post__thumbnail
-  img {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-  margin: 0 !important;
-  transform: none !important;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* Placeholder fills the full thumbnail area */
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__thumbnail--placeholder img {
-  object-fit: cover;
-  opacity: 1;
-}
-
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__text {
-  padding: 18px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 8px;
-}
-
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__title {
-  font-size: 1.05rem;
-  line-height: 1.35;
-  margin: 0;
-}
-
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__title a {
-  color: #111;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__title a:hover {
-  color: #f63e04;
-}
-
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__meta-data {
-  margin-bottom: 0;
-  color: #777;
+.dgg-kicker {
+  margin: 0 0 0.5rem;
   font-size: 0.8125rem;
-}
-
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__read-more {
-  margin-top: auto;
-  color: var(--e-global-color-accent, #414284);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.elementor-widget-posts .elementor-post.dgg-blog-card .elementor-post__read-more:hover {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: #f63e04;
 }
 
-/* Sidebar heading */
-.elementor-708 .elementor-element.elementor-element-50f3240b .elementor-heading-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--e-global-color-primary, #414284);
-  margin: 1.25rem 0 0.75rem;
+.dgg-kicker a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* Main grid: 2 columns */
-@media (min-width: 768px) {
-  .elementor-621 .elementor-element.elementor-element-bbf515f .elementor-posts-container.elementor-grid,
-  .elementor-708 .elementor-element.elementor-element-bbf515f .elementor-posts-container.elementor-grid {
+.dgg-kicker a:hover {
+  text-decoration: underline;
+}
+
+.dgg-blog-listing,
+.dgg-related {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3.25rem;
+}
+
+.dgg-blog-listing__intro {
+  max-width: 36rem;
+  margin-bottom: 1.5rem;
+}
+
+.dgg-blog-listing h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.2;
+  color: #414284;
+}
+
+.dgg-blog-listing__lede {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #555;
+}
+
+.dgg-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .dgg-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 767px) {
-  .elementor-621 .elementor-element.elementor-element-bbf515f .elementor-posts-container.elementor-grid,
-  .elementor-708 .elementor-element.elementor-element-bbf515f .elementor-posts-container.elementor-grid {
-    grid-template-columns: minmax(0, 1fr);
+@media (min-width: 1024px) {
+  .dgg-card-grid,
+  .dgg-card-grid--related {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.15rem;
   }
+}
+
+.dgg-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 340px;
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid rgba(65, 66, 132, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(65, 66, 132, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dgg-card:hover {
+  box-shadow: 0 8px 20px rgba(65, 66, 132, 0.12);
+  transform: translateY(-2px);
+}
+
+.dgg-card__media {
+  display: block;
+  aspect-ratio: 16 / 9;
+  max-height: 148px;
+  background: linear-gradient(135deg, #f4f5fa, #e8eaf4);
+  overflow: hidden;
+}
+
+.dgg-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dgg-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.85rem 0.95rem 1rem;
+  flex: 1;
+}
+
+.dgg-card__body time {
+  color: #777;
+  font-size: 0.75rem;
+}
+
+.dgg-card__body h2,
+.dgg-card__body h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  color: #1c1c28;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dgg-card__body h2 a,
+.dgg-card__body h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.dgg-card__body h2 a:hover,
+.dgg-card__body h3 a:hover {
+  color: #f63e04;
+}
+
+.dgg-card__body p {
+  margin: 0;
+  color: #555;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dgg-card__more {
+  margin-top: auto;
+  padding-top: 0.25rem;
+  color: #414284;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dgg-card__more:hover {
+  color: #f63e04;
+}
+
+.dgg-blog-listing .elementor-pagination {
+  margin-top: 2.25rem;
+  text-align: center;
+}
+
+.dgg-blog-listing .elementor-pagination .page-numbers {
+  display: inline-block;
+  min-width: 2.25rem;
+  padding: 0.4rem 0.7rem;
+  margin: 0 0.15rem;
+  border-radius: 6px;
+  color: #414284;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.dgg-blog-listing .elementor-pagination a.page-numbers:hover {
+  color: #f63e04;
+}
+
+.dgg-blog-listing .elementor-pagination .page-numbers.current {
+  background: #414284;
+  color: #fff;
+  font-weight: 600;
+}
+
+.dgg-blog-listing .elementor-pagination span.page-numbers.prev,
+.dgg-blog-listing .elementor-pagination span.page-numbers.next {
+  opacity: 0.45;
+  cursor: default;
 }

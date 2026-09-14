@@ -5,7 +5,15 @@ import headerHtml from '../data/blog-listing/header.html?raw';
 import footerHtml from '../data/blog-listing/footer.html?raw';
 import meta from '../data/blog-listing/meta.json';
 import { stripMaliciousHtml } from '../lib/sanitize-html';
-import { getPublishedPosts, publicHref, POSTS_PER_PAGE } from '../lib/blog-posts';
+import {
+  getPublishedPosts,
+  publicHref,
+  POSTS_PER_PAGE,
+  resolveFeaturedImage,
+  postExcerpt,
+  formatNlDate,
+  postDate,
+} from '../lib/blog-posts';
 
 interface Props {
   currentPage: number;
@@ -36,25 +44,39 @@ const canonical = currentPage <= 1 ? '/blog/' : `/blog/page/${currentPage}/`;
   pageScript="/js/blog-listing.js"
 >
   <Fragment set:html={stripMaliciousHtml(headerHtml)} />
-  <section class="blog-listing page-content">
-    <h1>Laatste artikelen</h1>
-    <ul class="blog-list">
-      {pagePosts.map((post) => (
-        <li class="blog-list-item">
-          <h2>
-            <a href={publicHref(post)}>{post.data.title}</a>
-          </h2>
-          <p>{post.data.description}</p>
-          <time datetime={post.data.pubDate.toISOString()}>
-            {post.data.pubDate.toLocaleDateString('nl-NL', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-        </li>
-      ))}
-    </ul>
+  <section class="dgg-blog-listing" id="content">
+    <header class="dgg-blog-listing__intro">
+      <p class="dgg-kicker">Blog</p>
+      <h1>Laatste artikelen</h1>
+      <p class="dgg-blog-listing__lede">
+        Tips en gidsen over verzorging van huid en haar — onafhankelijk vergeleken.
+      </p>
+    </header>
+    <div class="dgg-card-grid">
+      {pagePosts.map((post) => {
+        const href = publicHref(post);
+        const image = resolveFeaturedImage(post);
+        const excerpt = postExcerpt(post, 120);
+        const date = postDate(post);
+        return (
+          <article class="dgg-card">
+            <a class="dgg-card__media" href={href} tabindex="-1" aria-hidden="true">
+              <img src={image} alt="" loading="lazy" width="360" height="200" />
+            </a>
+            <div class="dgg-card__body">
+              <time datetime={date.toISOString()}>{formatNlDate(date)}</time>
+              <h2>
+                <a href={href}>{post.data.title}</a>
+              </h2>
+              {excerpt && <p>{excerpt}</p>}
+              <a class="dgg-card__more" href={href}>
+                Lees artikel
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
     <BlogPagination currentPage={currentPage} totalPages={totalPages} />
   </section>
   <Fragment set:html={stripMaliciousHtml(footerHtml)} />

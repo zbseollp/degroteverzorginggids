@@ -53,7 +53,14 @@
     }
   }
 
+  function initAstroCards() {
+    document.querySelectorAll('.dgg-card__media img').forEach((img) => {
+      bindImage(img);
+    });
+  }
+
   function initBlogListingCards() {
+    initAstroCards();
     document.querySelectorAll('.elementor-widget-posts .elementor-post').forEach((article) => {
       article.classList.add('dgg-blog-card');
 

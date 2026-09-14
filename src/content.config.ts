@@ -52,7 +52,11 @@ const blog = defineCollection({
       slug: asText(data.slug) || undefined,
       draft: data.draft === true || data.draft === 'true',
       publishStatus: asText(data.publishStatus) || asText(data._status) || undefined,
-      featuredImage: mediaUrl(data.featuredImage) || mediaUrl(data.heroImage) || mediaUrl(data.image),
+      featuredImage:
+        mediaUrl(data.featuredImage) ||
+        mediaUrl(data.heroImage) ||
+        mediaUrl(data.image) ||
+        mediaUrl(data.thumbnail),
     };
   }),
 });

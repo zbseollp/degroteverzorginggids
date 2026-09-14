@@ -9,6 +9,85 @@
 
 .elementor-location-header .elementor-section {
   background-color: #fff;
+  overflow: visible;
+}
+
+.elementor-location-header .elementor-element-populated,
+.elementor-location-header .elementor-widget-wrap,
+.elementor-location-header .elementor-widget-container {
+  overflow: visible;
+}
+
+.elementor-location-header .elementor-element-72183dee {
+  border-bottom: 1px solid rgba(65, 66, 132, 0.08);
+}
+
+.elementor-location-header .elementor-element-6e19a4f > .elementor-container {
+  align-items: center;
+  min-height: 64px;
+}
+
+.elementor-location-header .elementor-nav-menu--layout-horizontal > .elementor-nav-menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.15rem;
+}
+
+.elementor-location-header .elementor-nav-menu--main .elementor-item {
+  padding: 0.7rem 0.75rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.2;
+}
+
+.elementor-location-header .elementor-nav-menu--main .elementor-item:hover,
+.elementor-location-header .elementor-nav-menu--main .elementor-item.highlighted,
+.elementor-location-header .elementor-nav-menu--main .elementor-item.elementor-item-active,
+.elementor-location-header .elementor-nav-menu--main .elementor-item:focus {
+  color: #f63e04;
+}
+
+.elementor-location-header .elementor-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  border-radius: 8px;
+  color: #414284;
+  cursor: pointer;
+}
+
+@media (min-width: 1025px) {
+  .elementor-location-header .elementor-element-6e19a4f > .elementor-container > .elementor-element-2c9b6f7 {
+    width: 88% !important;
+  }
+
+  .elementor-location-header .elementor-element-6e19a4f > .elementor-container > .elementor-element-a53bf32 {
+    width: 12% !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .elementor-location-header .elementor-menu-toggle {
+    display: inline-flex;
+  }
+
+  .elementor-location-header .elementor-nav-menu--dropdown.elementor-nav-menu__container {
+    z-index: 1001;
+    background: #fff;
+    box-shadow: 0 12px 32px rgba(65, 66, 132, 0.16);
+    border-radius: 0 0 12px 12px;
+  }
+
+  .elementor-location-header .elementor-nav-menu--dropdown .elementor-item,
+  .elementor-location-header .elementor-nav-menu--dropdown .elementor-sub-item {
+    padding: 0.85rem 1.1rem;
+    font-weight: 600;
+  }
 }
 
 /* Nav dropdown enhancements for static Astro build (replaces Elementor SmartMenus JS) */

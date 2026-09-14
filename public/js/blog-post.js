@@ -54,7 +54,7 @@
   }
 
   function initContentImages() {
-    document.querySelectorAll('#content img').forEach((img) => {
+    document.querySelectorAll('#content img, .dgg-article__body img, .dgg-card img').forEach((img) => {
       if (img.closest('.elementor-post__thumbnail')) return;
       bindImage(img);
     });

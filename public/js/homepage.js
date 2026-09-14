@@ -162,12 +162,38 @@
     });
   }
 
+  function markCurrentNav() {
+    const path = (window.location.pathname.replace(/\/+$/, '') || '/') + '/';
+    const isBlog =
+      path === '/blog/' ||
+      path.startsWith('/blog/') ||
+      Boolean(document.querySelector('.dgg-article, .dgg-blog-listing'));
+
+    document.querySelectorAll('.elementor-nav-menu a[href="/blog/"], .elementor-nav-menu a[href="/blog"]').forEach((link) => {
+      const item = link.closest('.menu-item');
+      if (isBlog) {
+        item?.classList.add('current-menu-item', 'current_page_item');
+        link.classList.add('elementor-item-active');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+
+    if (path !== '/') {
+      document.querySelectorAll('.elementor-nav-menu .menu-item-home').forEach((item) => {
+        item.classList.remove('current-menu-item', 'current_page_item');
+        item.querySelector('a')?.classList.remove('elementor-item-active');
+        item.querySelector('a')?.removeAttribute('aria-current');
+      });
+    }
+  }
+
   function init() {
     initSubmenuArrows();
     initMenuToggle();
     initDesktopSubmenus();
     initMobileSubmenus();
     resetMenusOnResize();
+    markCurrentNav();
   }
 
   if (document.readyState === 'loading') {

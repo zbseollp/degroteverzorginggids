@@ -3,58 +3,88 @@ import PageLayout from './PageLayout.astro';
 import headerHtml from '../data/homepage/header.html?raw';
 import footerHtml from '../data/homepage/footer.html?raw';
 import { stripMaliciousHtml } from '../lib/sanitize-html';
-import { blogBodyHtml, publicHref, type BlogPost } from '../lib/blog-posts';
+import {
+  blogBodyHtml,
+  publicHref,
+  publicSlug,
+  resolveFeaturedImage,
+  formatNlDate,
+  postDate,
+  getPublishedPosts,
+  postExcerpt,
+  BLOG_PLACEHOLDER,
+  type BlogPost,
+} from '../lib/blog-posts';
 
 interface Props {
   entry: BlogPost;
 }
 
 const { entry } = Astro.props;
-const { title, description, pubDate, updatedDate, author, categories, tags } = entry.data;
+const { title, description, updatedDate, author, categories } = entry.data;
 const canonical = publicHref(entry);
+const published = postDate(entry);
+const image = resolveFeaturedImage(entry);
+const showImage = image !== BLOG_PLACEHOLDER;
 const bodyHtml = stripMaliciousHtml(blogBodyHtml(entry.body));
+const related = (await getPublishedPosts())
+  .filter((post) => publicSlug(post) !== publicSlug(entry))
+  .slice(0, 3);
 ---
 
 <PageLayout
   title={`${title} - degroteverzorginggids.nl`}
   description={description}
   canonical={canonical}
-  publishedTime={pubDate.toISOString()}
+  publishedTime={published.toISOString()}
   modifiedTime={updatedDate?.toISOString()}
+  ogImage={showImage ? image : undefined}
   extraStylesheets={['/css/blog-post-fixes.css']}
 >
   <Fragment set:html={stripMaliciousHtml(headerHtml)} />
-  <article class="blog-post page-content">
-    <header class="blog-post-header">
+  <article class="dgg-article" id="content">
+    <header class="dgg-article__header">
+      <p class="dgg-kicker">
+        <a href="/blog/">Blog</a>
+        {categories?.[0] && <span> / {categories[0]}</span>}
+      </p>
       <h1>{title}</h1>
-      <div class="blog-post-meta">
-        <time datetime={pubDate.toISOString()}>
-          {pubDate.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
-        </time>
-        {author && <span class="author">door {author}</span>}
-        {updatedDate && (
-          <span class="updated">
-            (bijgewerkt: {updatedDate.toLocaleDateString('nl-NL')})
-          </span>
-        )}
+      <div class="dgg-article__meta">
+        <time datetime={published.toISOString()}>{formatNlDate(published)}</time>
+        {author && <span class="dgg-article__author">door {author}</span>}
       </div>
-      {categories && categories.length > 0 && (
-        <div class="blog-post-categories">
-          {categories.map((cat) => (
-            <span class="category-tag">{cat}</span>
-          ))}
-        </div>
-      )}
     </header>
-    <div class="blog-post-content" set:html={bodyHtml} />
-    {tags && tags.length > 0 && (
-      <footer class="blog-post-tags">
-        {tags.map((tag) => (
-          <span class="tag">{tag}</span>
-        ))}
-      </footer>
+    {showImage && (
+      <figure class="dgg-article__hero">
+        <img src={image} alt="" />
+      </figure>
     )}
+    <div class="dgg-article__body" set:html={bodyHtml} />
   </article>
+  {related.length > 0 && (
+    <section class="dgg-related" aria-labelledby="dgg-related-heading">
+      <h2 id="dgg-related-heading">Meer artikelen</h2>
+      <div class="dgg-card-grid dgg-card-grid--related">
+        {related.map((post) => {
+          const href = publicHref(post);
+          return (
+            <article class="dgg-card">
+              <a class="dgg-card__media" href={href} tabindex="-1" aria-hidden="true">
+                <img src={resolveFeaturedImage(post)} alt="" loading="lazy" width="640" height="400" />
+              </a>
+              <div class="dgg-card__body">
+                <time datetime={postDate(post).toISOString()}>{formatNlDate(postDate(post))}</time>
+                <h3>
+                  <a href={href}>{post.data.title}</a>
+                </h3>
+                <p>{postExcerpt(post, 120)}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  )}
   <Fragment set:html={stripMaliciousHtml(footerHtml)} />
   <script src="/js/blog-post.js" defer></script>
 </PageLayout>
