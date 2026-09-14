@@ -1,0 +1,44 @@
+/* Footer social icons: SVG mask fallback (avoids empty squares when FA webfonts fail to load) */
+
+.elementor-location-footer .elementor-widget-social-icons .elementor-social-icon i.fab {
+  font-size: 0 !important;
+  line-height: 0;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.elementor-location-footer .elementor-widget-social-icons .elementor-social-icon i.fab::before {
+  content: "" !important;
+  display: block;
+  width: 25px;
+  height: 25px;
+  background-color: #f63e04;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.elementor-location-footer .elementor-social-icon-facebook i.fab::before {
+  -webkit-mask-image: url(/icons/social/facebook.svg);
+  mask-image: url(/icons/social/facebook.svg);
+}
+
+.elementor-location-footer .elementor-social-icon-instagram i.fab::before {
+  -webkit-mask-image: url(/icons/social/instagram.svg);
+  mask-image: url(/icons/social/instagram.svg);
+}
+
+.elementor-location-footer .elementor-social-icon-twitter i.fab::before {
+  -webkit-mask-image: url(/icons/social/twitter.svg);
+  mask-image: url(/icons/social/twitter.svg);
+}
+
+.elementor-location-footer .elementor-social-icon-youtube i.fab::before {
+  -webkit-mask-image: url(/icons/social/youtube.svg);
+  mask-image: url(/icons/social/youtube.svg);
+}

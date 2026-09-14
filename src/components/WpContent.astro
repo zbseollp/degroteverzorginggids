@@ -1,0 +1,12 @@
+---
+import { stripMaliciousHtml } from '../lib/sanitize-html';
+
+interface Props {
+  html: string;
+}
+
+const { html } = Astro.props;
+const safe = stripMaliciousHtml(html);
+---
+
+<div class="wp-content" set:html={safe} />

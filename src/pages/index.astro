@@ -1,0 +1,22 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import headerHtml from '../data/homepage/header.html?raw';
+import mainHtml from '../data/homepage/main.html?raw';
+import footerHtml from '../data/homepage/footer.html?raw';
+import meta from '../data/homepage/meta.json';
+import { stripMaliciousHtml } from '../lib/sanitize-html';
+
+const { title, description, modifiedTime, ogImage, bodyClass } = meta;
+---
+
+<HomeLayout
+  title={title}
+  description={description}
+  modifiedTime={modifiedTime}
+  ogImage={ogImage}
+  bodyClass={bodyClass}
+>
+  <Fragment set:html={stripMaliciousHtml(headerHtml)} />
+  <Fragment set:html={stripMaliciousHtml(mainHtml)} />
+  <Fragment set:html={stripMaliciousHtml(footerHtml)} />
+</HomeLayout>
